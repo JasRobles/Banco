@@ -170,7 +170,13 @@ public class frmLogin extends javax.swing.JFrame {
          int id = cls.IdUsu;
          int tipo = cls.TipoUsu;
          if(Integer.parseInt(ValueMenber[cbtipo.getSelectedIndex()])==tipo){
+            if(tipo==1){
             JOptionPane.showMessageDialog(null, "Bienbenido "+ txtUsuario.getText());
+            Abono abono = new Abono();
+            String usuario = txtUsuario.getText();
+            abono.lblUsuario.setText(usuario.toUpperCase());
+            abono.show();
+            }
          }else{
          JOptionPane.showMessageDialog(null, "Error debe de selecionar un tipo de usuario diferente");
          }
