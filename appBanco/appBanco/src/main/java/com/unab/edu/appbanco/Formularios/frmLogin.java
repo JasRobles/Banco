@@ -6,6 +6,10 @@
 package com.unab.edu.appbanco.Formularios;
 
 import com.unab.edu.appbanco.DAO.ClsUsuario;
+import com.unab.edu.appbanco.DAO.ClstipoUsuario;
+import com.unab.edu.appbanco.Entidades.TipoUsuario;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +19,32 @@ import javax.swing.JOptionPane;
 public class frmLogin extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmLogin
+     * Creates new form prueba
      */
     public frmLogin() {
-       
-    
-        setResizable(false);
         initComponents();
+        Displaymenber();
+        setResizable(false);
+    }
+
+    String ValueMenber[];
+    int contador = 1;
+
+    void Displaymenber() {
+        DefaultComboBoxModel cbdefault = new DefaultComboBoxModel();
+        ClstipoUsuario cls= new ClstipoUsuario();
+        ArrayList<TipoUsuario> tipo = cls.Mostrar();
+        ValueMenber = new String[tipo.size() + 1];
+        String Filas[] = new String[5];
+        cbdefault.addElement("");
+        for (var i : tipo) {
+            Filas[0] = String.valueOf(i.getId());
+            Filas[1] = i.getTipoUsuario();
+            ValueMenber[contador] = Filas[0];
+            cbdefault.addElement(Filas[1]);
+            contador++;
+        }
+        cbtipo.setModel(cbdefault);
     }
 
     /**
@@ -33,32 +56,20 @@ public class frmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelFondo = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btnIngresar = new javax.swing.JButton();
+        cbtipo = new javax.swing.JComboBox<>();
         txtPass = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
-        lblPass = new javax.swing.JLabel();
-        CbTipo = new javax.swing.JComboBox<>();
-        btnIngresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        lblUsu = new javax.swing.JLabel();
+        lblpass = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(346, 383));
+        setBackground(new java.awt.Color(153, 255, 204));
 
-        panelFondo.setBackground(new java.awt.Color(153, 255, 204));
-
-        txtPass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblUsuario.setText("Usuario");
-
-        lblPass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lblPass.setText("Password");
-
-        CbTipo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        CbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.setBackground(new java.awt.Color(153, 255, 204));
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnIngresar.setText("Ingresar");
@@ -68,45 +79,76 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
+        cbtipo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtPass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco (1).png"))); // NOI18N
 
-        javax.swing.GroupLayout panelFondoLayout = new javax.swing.GroupLayout(panelFondo);
-        panelFondo.setLayout(panelFondoLayout);
-        panelFondoLayout.setHorizontalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPass, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbTipo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.CENTER))
-                .addContainerGap(59, Short.MAX_VALUE))
+        lblUsu.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblUsu.setText("Usuario");
+
+        lblpass.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblpass.setText("Password");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("BIENVENIDO");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1))
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(lblUsu))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(lblpass))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(btnIngresar)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
-        panelFondoLayout.setVerticalGroup(
-            panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addContainerGap()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
+                .addComponent(lblUsu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPass, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblpass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(CbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(cbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
-        getContentPane().add(panelFondo, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
         setLocationRelativeTo(null);
@@ -118,16 +160,24 @@ public class frmLogin extends javax.swing.JFrame {
         String usu = txtUsuario.getText();
         String pass = txtPass.getText();
         var resul = cls.login(usu, pass);
-             if (!usu.isEmpty() && !pass.isEmpty()) {
-            if (resul == true) {
-                JOptionPane.showMessageDialog(null, "Wellcome");
-            } else {
-                JOptionPane.showMessageDialog(null, "Close");
-            }
+        if (!usu.isEmpty() && !pass.isEmpty()) {
+         
+         
+         if((ValueMenber[cbtipo.getSelectedIndex()])==null){
+         JOptionPane.showMessageDialog(null, "Debe de seleccionar un tipo de usuario");
+         
+         }else{
+         int id = cls.IdUsu;
+         int tipo = cls.TipoUsu;
+         if(Integer.parseInt(ValueMenber[cbtipo.getSelectedIndex()])==tipo){
+            JOptionPane.showMessageDialog(null, "Bienbenido "+ txtUsuario.getText());
+         }else{
+         JOptionPane.showMessageDialog(null, "Error debe de selecionar un tipo de usuario diferente");
+         }
+         }
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
-      
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
@@ -167,12 +217,13 @@ public class frmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CbTipo;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JComboBox<String> cbtipo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblPass;
-    private javax.swing.JLabel lblUsuario;
-    private javax.swing.JPanel panelFondo;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblUsu;
+    private javax.swing.JLabel lblpass;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

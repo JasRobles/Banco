@@ -21,21 +21,26 @@ public class ClstipoUsuario {
     
     Conexion con = new Conexion();
     Connection coneccion = con.retornarConexion();
-    public ArrayList<TipoUsuario>MostrarPersonas(){
+    public ArrayList<TipoUsuario>Mostrar(){
     ArrayList<TipoUsuario>lista = new ArrayList<>();
     try {
-        CallableStatement call = coneccion.prepareCall("select*from tipousuario");
+        CallableStatement call = coneccion.prepareCall("CALL SP_S_TIPO()");
         ResultSet resul = call.executeQuery();
         while(resul.next()){
         TipoUsuario usu = new TipoUsuario();
-        
-        
+        usu.setId(resul.getInt("Id"));
+        usu.setTipoUsuario(resul.getString("TipoUser"));
+        lista.add(usu);
         }
-        
-        
-            
+            coneccion.close();
         } catch (Exception e) {
+            System.out.println("error"+e);
         }
+    for(var i : lista){
+    //    System.out.println(i.getId()+"   "+i.getTipoUsuario());
+    
+    }
    return lista;
+   
     }  
 }
