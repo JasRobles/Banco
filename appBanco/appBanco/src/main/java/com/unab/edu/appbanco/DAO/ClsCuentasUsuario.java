@@ -22,7 +22,7 @@ public class ClsCuentasUsuario {
     public void InsertarAbono(CuentasUsuario cuentas){ 
         try {
             java.sql.CallableStatement call = conectar.prepareCall("call SP_I_ABONO(?,?,?)");
-             call.setInt("Pid", cuentas.getId());
+             call.setInt("Pid", cuentas.getIdUsuario());
              call.setDouble("pSaldo", cuentas.getSaldo());
              call.setDate("pFecha", new java.sql.Date(cuentas.getFecha().getTime()));
              call.execute();

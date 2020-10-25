@@ -9,8 +9,12 @@ import com.unab.edu.appbanco.DAO.ClsCuentasUsuario;
 import com.unab.edu.appbanco.DAO.ClsUsuario;
 import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import com.unab.edu.appbanco.Entidades.Usuario;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +27,10 @@ public class Abono extends javax.swing.JFrame {
      */
     public Abono() {
         initComponents();
+        setResizable(false);
+        displaymember();
+        java.util.Date fecha= new Date();
+        jdcFecha.setDate(fecha);
     }
     
     /**
@@ -150,6 +158,7 @@ public class Abono extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
@@ -160,9 +169,12 @@ public class Abono extends javax.swing.JFrame {
         try {
             CuentasUsuario CuentasUsu = new CuentasUsuario();
             ClsCuentasUsuario ClsCU = new ClsCuentasUsuario();
-            //CuentasUsu.setId();
+            CuentasUsu.setSaldo(Double.valueOf(txtCantidad.getText()));
+            CuentasUsu.setIdUsuario(Integer.parseInt(Valuemember[cbusuario.getSelectedIndex()]));
+            CuentasUsu.setFecha(jdcFecha.getDate());
+            ClsCU.InsertarAbono(CuentasUsu);
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
         }
     }//GEN-LAST:event_btnAbonarActionPerformed
     
@@ -171,7 +183,22 @@ public class Abono extends javax.swing.JFrame {
     void displaymember(){
      DefaultComboBoxModel defaultCombobox = new DefaultComboBoxModel();
      ClsUsuario ClsUsu = new ClsUsuario();
+     ArrayList<Usuario> Usu = ClsUsu.MostrarUsuario();
+     Valuemember = new String [Usu.size()+1];
+     String filas[] = new String [5];
+     defaultCombobox.addElement("");
      
+     for(var iterar: Usu){
+     
+     filas [0] = String.valueOf(iterar.getIdUsuario());
+     filas [1] =iterar.getUsuario();
+     Valuemember[contador]=filas[0];
+     defaultCombobox.addElement(filas[1]);
+     contador ++;
+     
+     }
+     cbusuario.setModel(defaultCombobox);
+    
     }
     
     /**

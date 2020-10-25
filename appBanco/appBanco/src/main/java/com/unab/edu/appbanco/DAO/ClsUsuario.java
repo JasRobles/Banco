@@ -6,7 +6,6 @@
 package com.unab.edu.appbanco.DAO;
 
 import com.unab.edu.appbanco.Conexion.Conexion;
-import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import com.unab.edu.appbanco.Entidades.Usuario;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -29,7 +28,7 @@ public class ClsUsuario {
     public ArrayList<Usuario> MostrarUsuario() {
         ArrayList<Usuario> lista = new ArrayList<>();
         try {
-            CallableStatement st = coneccion.prepareCall("SP_S_USUARIOS ()");
+            CallableStatement st = coneccion.prepareCall("call SP_S_USUARIOS ()");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                Usuario U = new Usuario();
