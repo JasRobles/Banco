@@ -6,11 +6,13 @@
 package com.unab.edu.appbanco.Entidades;
 
 import java.util.Date;
+import lombok.Data;
 
 /**
  *
  * @author 14-ck0013lab
  */
+@Data
 public class CuentasUsuario extends Usuario{
     private int id;
     private double saldo;

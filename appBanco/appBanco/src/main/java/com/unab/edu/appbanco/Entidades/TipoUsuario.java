@@ -5,10 +5,13 @@
  */
 package com.unab.edu.appbanco.Entidades;
 
+import lombok.Data;
+
 /**
  *
  * @author 14-ck0013lab
  */
+@Data
 public class TipoUsuario {
     private int Id;
     private String TipoUsuario;

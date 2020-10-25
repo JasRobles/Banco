@@ -5,6 +5,9 @@
  */
 package com.unab.edu.appbanco.Formularios;
 
+import com.unab.edu.appbanco.DAO.ClsUsuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rafael
@@ -59,6 +62,11 @@ public class frmLogin extends javax.swing.JFrame {
 
         btnIngresar.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco (1).png"))); // NOI18N
 
@@ -70,10 +78,9 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPass, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(lblUsuario))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(txtPass, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbTipo, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.Alignment.CENTER))
@@ -104,6 +111,24 @@ public class frmLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        // TODO add your handling code here:
+        ClsUsuario cls = new ClsUsuario();
+        String usu = txtUsuario.getText();
+        String pass = txtPass.getText();
+        var resul = cls.login(usu, pass);
+             if (!usu.isEmpty() && !pass.isEmpty()) {
+            if (resul == true) {
+                JOptionPane.showMessageDialog(null, "Wellcome");
+            } else {
+                JOptionPane.showMessageDialog(null, "Close");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        }
+    
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,11 +5,79 @@
  */
 package com.unab.edu.appbanco.DAO;
 
+import com.unab.edu.appbanco.Conexion.Conection;
+import com.unab.edu.appbanco.Entidades.CuentasUsuario;
+import com.unab.edu.appbanco.Entidades.Usuario;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 /**
  *
  * @author 14-ck0013lab
  */
 public class ClsUsuario {
-    
-    
+
+    Conection con = new Conection();
+    Connection coneccion = con.retornarConexion();
+    public boolean resultado;
+    public int TipoUsu;
+    public int IdUsu;
+
+    public boolean login(String usu, String pass) {
+
+        ArrayList<Usuario> listaUsuariopass = new ArrayList<>();
+        ArrayList<Usuario> ListaPass = new ArrayList<>();
+        try {
+            CallableStatement call = coneccion.prepareCall("Call SP_S_LOGIN(?,?)");
+            call.setString("pUsuario", usu);
+            call.setString("pPass", pass);
+            ResultSet resul = call.executeQuery();
+            while (resul.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setTipoUs("tipoUsuario");
+                usuario.setUsuario("Usuario");
+                usuario.setPassword("PassWord");
+                usuario.setIdU("idUsuario");
+                listaUsuariopass.add(usuario);
+            }
+
+            String usuBase = "";
+            String passBase = "";
+            for (var i : listaUsuariopass) {
+                usuBase = i.getUsuario();
+                passBase = i.getPassword();
+                IdUsu = i.getIdU();
+                TipoUsu = i.getTipoUs();
+            }
+            CallableStatement call2 = coneccion.prepareCall("call SP_S_CRIP(?)");
+            call2.setString("PcripPass", pass);
+            ResultSet rs2 = call2.executeQuery();
+            while (rs2.next()) {
+                Usuario escrip = new Usuario();
+                escrip.setPassword(rs2.getString("crip"));
+                ListaPass.add(escrip);
+            }
+            String Passencriptada = null;
+            for(var i : ListaPass){
+            Passencriptada = i.getPassword();
+            pass = Passencriptada;
+            }
+                
+            if (usuBase != null && passBase != null) {
+                if (usuBase.equals(usu) && passBase.equals(pass)) {
+                    resultado = true;
+                } else {
+                    resultado = false;
+
+                }
+            }
+            coneccion.close();
+
+        } catch (Exception e) {
+            System.out.println("Erro" + e);
+        }
+        return resultado;
+    }
 }
