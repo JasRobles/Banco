@@ -9,8 +9,6 @@ import com.unab.edu.appbanco.DAO.ClsCuentasUsuario;
 import com.unab.edu.appbanco.DAO.ClsUsuario;
 import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import com.unab.edu.appbanco.Entidades.Usuario;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
