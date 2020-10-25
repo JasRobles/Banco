@@ -12,6 +12,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,24 @@ public class ClsUsuario {
     public int TipoUsu;
     public int IdUsu;
 
+    public ArrayList<Usuario> MostrarUsuario() {
+        ArrayList<Usuario> lista = new ArrayList<>();
+        try {
+            CallableStatement st = coneccion.prepareCall("SP_S_USUARIOS ()");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               Usuario U = new Usuario();
+                U.setIdUsuario(rs.getInt("idUsuario"));
+                 U.setUsuario(rs.getString("Usuario"));
+                lista.add(U);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error" + e);
+        }
+        return lista;
+    }
+    
     public boolean login(String usu, String pass) {
 
         ArrayList<Usuario> listaUsuariopass = new ArrayList<>();
