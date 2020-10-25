@@ -5,7 +5,7 @@
  */
 package com.unab.edu.appbanco.Entidades;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  *
@@ -13,8 +13,10 @@ import lombok.Data;
  */
 @Data
 public class Usuario extends TipoUsuario{
-    private int IdU;
+    private int idUsuario;
     private String usuario;
-    private String password;
-    private int tipoUs;
+    private String PassWord;
+   
+
+    
 }

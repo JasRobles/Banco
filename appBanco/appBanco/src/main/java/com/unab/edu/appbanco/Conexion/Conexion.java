@@ -12,10 +12,10 @@ import java.sql.DriverManager;
  *
  * @author 14-ck0013lab
  */
-public class Conection {
+public class Conexion {
      private Connection conexion;
 
-    public Conection () {
+    public Conexion () {
 
         try {
             conexion = DriverManager.getConnection("jdbc:mysql://localhost/appbanco", "root", "root");

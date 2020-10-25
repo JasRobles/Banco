@@ -5,7 +5,7 @@
  */
 package com.unab.edu.appbanco.DAO;
 
-import com.unab.edu.appbanco.Conexion.Conection;
+import com.unab.edu.appbanco.Conexion.Conexion;
 import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import com.unab.edu.appbanco.Entidades.Usuario;
 import java.sql.CallableStatement;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class ClsUsuario {
 
-    Conection con = new Conection();
+    Conexion con = new Conexion();
     Connection coneccion = con.retornarConexion();
     public boolean resultado;
     public int TipoUsu;
@@ -36,10 +36,11 @@ public class ClsUsuario {
             ResultSet resul = call.executeQuery();
             while (resul.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setTipoUs("tipoUsuario");
-                usuario.setUsuario("Usuario");
-                usuario.setPassword("PassWord");
-                usuario.setIdU("idUsuario");
+                usuario.setUsuario(resul.getString("Usuario"));
+                usuario.setPassWord(resul.getString("PassWord"));
+                usuario.setIdUsuario(resul.getInt("idUsuario"));
+                usuario.setId(resul.getInt("tipoUsuario"));
+                
                 listaUsuariopass.add(usuario);
             }
 
@@ -47,21 +48,22 @@ public class ClsUsuario {
             String passBase = "";
             for (var i : listaUsuariopass) {
                 usuBase = i.getUsuario();
-                passBase = i.getPassword();
-                IdUsu = i.getIdU();
-                TipoUsu = i.getTipoUs();
+                passBase = i.getPassWord();
+                IdUsu=i.getIdUsuario();
+                TipoUsu=i.getId();
+              
             }
             CallableStatement call2 = coneccion.prepareCall("call SP_S_CRIP(?)");
             call2.setString("PcripPass", pass);
             ResultSet rs2 = call2.executeQuery();
             while (rs2.next()) {
                 Usuario escrip = new Usuario();
-                escrip.setPassword(rs2.getString("crip"));
+                escrip.setPassWord(rs2.getString("crip"));
                 ListaPass.add(escrip);
             }
             String Passencriptada = null;
             for(var i : ListaPass){
-            Passencriptada = i.getPassword();
+            Passencriptada = i.getPassWord();
             pass = Passencriptada;
             }
                 
@@ -76,8 +78,9 @@ public class ClsUsuario {
             coneccion.close();
 
         } catch (Exception e) {
-            System.out.println("Erro" + e);
+            System.out.println("Error" + e);
         }
         return resultado;
+        
     }
 }

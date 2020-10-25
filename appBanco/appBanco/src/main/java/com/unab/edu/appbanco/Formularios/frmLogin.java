@@ -127,7 +127,7 @@ public class frmLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
-    
+      
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
