@@ -60,7 +60,11 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         tbTransaccion.setModel(ModeloTabla);
 
     }
-
+    
+    void limpiar() {
+        txtRetiro.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +85,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         jLabel3 = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,7 +118,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 276, 430, 220));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, 88));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 88));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Cantidad que desea retirar");
@@ -156,6 +161,14 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel4.setText("Saldo Disponible");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 100, 24));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casa.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 40, 60));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -215,6 +228,12 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         }
     }//GEN-LAST:event_txtRetiroKeyReleased
 
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+       frmLogin loguin = new frmLogin();
+       loguin.show();
+       dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -258,6 +277,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSaldo;
