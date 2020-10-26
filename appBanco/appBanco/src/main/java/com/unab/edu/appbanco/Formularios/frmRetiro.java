@@ -193,6 +193,8 @@ public class frmRetiro extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
             }
+        }else{
+        JOptionPane.showMessageDialog(null, "No se puede realizar la transaccion");
         }
         MostrarTransacciones();
     }//GEN-LAST:event_btnRetirarActionPerformed
