@@ -175,16 +175,19 @@ public class frmLogin extends javax.swing.JFrame {
                         String usuario = txtUsuario.getText();
                         abono.lblUsuario.setText(usuario.toUpperCase());
                         abono.show();
+                        dispose();
                     } else {
-                        prueba retiro = new prueba();
-                        JOptionPane.showMessageDialog(null, "Bienbenido " + txtUsuario.getText());
+                        prueba2 retiro = new prueba2();
                         retiro.id = id;
+                        JOptionPane.showMessageDialog(null, "Bienbenido " + txtUsuario.getText());
+                        retiro.MostrarTransacciones();
                         retiro.show();
-
+                         dispose();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error debe de selecionar un tipo de usuario diferente");
                 }
+      
             }
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
