@@ -21,9 +21,10 @@ public class frmRetiro extends javax.swing.JFrame {
      * Creates new form frmRetiro
      */
     public frmRetiro() {
+        MostrarTransacciones();
         initComponents();
     }
-    public int id;
+public int id;
     
     void MostrarTransacciones(){
     String TITULOS[] = {"SALDO", "TRANSACCION", "FECHA"};
@@ -32,14 +33,15 @@ public class frmRetiro extends javax.swing.JFrame {
         CuentasUsuario CU = new CuentasUsuario();
         CU.setIdUsuario(id);
         ArrayList<CuentasUsuario> lista = cuenta.lista(CU);
-        String filas[] = new String[6];
+        String filas[] = new String[3];
         for (var i : lista ){
         
             filas[0] = String.valueOf(i.getSaldo());
             filas[1] = String.valueOf(i.getTransaccion());
             filas[2] = String.valueOf(i.getFecha());
+            ModeloTabla.addRow(filas);
         }
-        
+        tbTransaccion.setModel(ModeloTabla);
         
     }
     /**

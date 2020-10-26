@@ -46,13 +46,14 @@ public class ClsCuentasUsuario {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    public  ArrayList<CuentasUsuario>lista (CuentasUsuario c){
+    public  ArrayList<CuentasUsuario>lista (CuentasUsuario cuen){
     ArrayList<CuentasUsuario>ListaCuentas= new ArrayList<>();
         try {
             CallableStatement call = conectar.prepareCall("call SP_S_TRANSACCIONES(?)");
-            call.setInt("pId", c.getIdUsuario());
+           call.setInt("pId", cuen.getIdUsuario());
             ResultSet resultado= call.executeQuery();
             while(resultado.next()){
+            CuentasUsuario c = new CuentasUsuario();
             c.setFecha(resultado.getDate("fecha"));
             c.setTransaccion(resultado.getInt("transaccion"));
             c.setSaldo(resultado.getDouble("saldo"));
@@ -61,6 +62,7 @@ public class ClsCuentasUsuario {
             
         } catch (Exception e) {
         }
+        System.out.println(ListaCuentas.size());
     return ListaCuentas;
     }
 }
