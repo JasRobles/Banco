@@ -177,7 +177,7 @@ public class frmLogin extends javax.swing.JFrame {
                         abono.show();
                         dispose();
                     } else {
-                        prueba2 retiro = new prueba2();
+                        frmRetiro retiro = new frmRetiro();
                         retiro.id = id;
                         JOptionPane.showMessageDialog(null, "Bienvenido " + txtUsuario.getText());
                         retiro.MostrarTransacciones();
