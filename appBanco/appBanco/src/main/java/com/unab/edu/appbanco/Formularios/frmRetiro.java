@@ -8,6 +8,7 @@ package com.unab.edu.appbanco.Formularios;
 import com.unab.edu.appbanco.DAO.ClsCuentasUsuario;
 import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import com.unab.edu.appbanco.Entidades.TipoUsuario;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +25,7 @@ public class frmRetiro extends javax.swing.JFrame {
     public frmRetiro() {
         initComponents();
         MostrarTransacciones();
+        setResizable(false);
     }
 
     public int id;
@@ -31,7 +33,7 @@ public class frmRetiro extends javax.swing.JFrame {
     public void actualizar() {
         MostrarTransacciones();
     }
-
+SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
     void MostrarTransacciones() {
 
         String TITULOS[] = {"SALDO", "TRANSACCION", "FECHA"};
@@ -51,7 +53,7 @@ public class frmRetiro extends javax.swing.JFrame {
                 filas[1] = String.valueOf("Retiro");
                 Saldo = Saldo - i.getSaldo();
             }
-            filas[2] = String.valueOf(i.getFecha());
+            filas[2] =formato.format(i.getFecha());
             ModeloTabla.addRow(filas);
             lblSaldo.setText(String.valueOf(Saldo));
         }
@@ -68,18 +70,33 @@ public class frmRetiro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnRetirar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTransaccion = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtRetiro = new javax.swing.JTextField();
-        btnRetirar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 255, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnRetirar.setFont(new java.awt.Font("Source Sans Pro Semibold", 1, 12)); // NOI18N
+        btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRetirar, new org.netbeans.lib.awtextra.AbsoluteConstraints(53, 203, 103, -1));
+
+        tbTransaccion.setBackground(new java.awt.Color(255, 204, 153));
         tbTransaccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -93,111 +110,110 @@ public class frmRetiro extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbTransaccion);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 276, 430, 220));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, 88));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Cantidad que desea retirar");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 171, 24));
 
         txtRetiro.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-
-        btnRetirar.setFont(new java.awt.Font("Source Sans Pro Semibold", 1, 12)); // NOI18N
-        btnRetirar.setText("Retirar");
-        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRetirarActionPerformed(evt);
+        txtRetiro.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtRetiroInputMethodTextChanged(evt);
             }
         });
+        txtRetiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRetiroActionPerformed(evt);
+            }
+        });
+        txtRetiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRetiroKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRetiroKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 165, -1));
 
-        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel2.setText("Saldo Disponible");
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 2, 36)); // NOI18N
+        jLabel2.setText("Retiros");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 140, 50));
 
         jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel3.setText("HISTORIAL DE TRANSACCIONES");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 234, -1, 24));
 
         lblSaldo.setFont(new java.awt.Font("Noto Serif Cond", 0, 14)); // NOI18N
+        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 103, 29));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(txtRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(164, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(btnRetirar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
-        );
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel4.setText("Saldo Disponible");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 100, 24));
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+  int cantidad=0;
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        if (Integer.valueOf(txtRetiro.getText())<=Double.valueOf(lblSaldo.getText())) {
+        int reciduo;
+        
+        
+        reciduo = cantidad%5;
+        if(reciduo==0){
+        if ((cantidad)<=Double.valueOf(lblSaldo.getText())) {
             try {
                 CuentasUsuario CuentasUsu = new CuentasUsuario();
                 ClsCuentasUsuario ClsCU = new ClsCuentasUsuario();
                 CuentasUsu.setIdUsuario(id);
                 CuentasUsu.setSaldo(Double.valueOf(txtRetiro.getText()));
                 ClsCU.InsertarRetiro(CuentasUsu);
+                txtRetiro.setText("");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
             }
         }else{
         JOptionPane.showMessageDialog(null, "No se puede realizar la transaccion");
+        txtRetiro.setText("");
         }
         MostrarTransacciones();
     }//GEN-LAST:event_btnRetirarActionPerformed
+        else {
+        JOptionPane.showMessageDialog(null, "La cantidad a retirar debe ser multipo de 5");
+        txtRetiro.setText("");
+        }
+    }
+    private void txtRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRetiroActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtRetiroActionPerformed
+
+    private void txtRetiroInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtRetiroInputMethodTextChanged
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtRetiroInputMethodTextChanged
+
+    private void txtRetiroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRetiroKeyPressed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_txtRetiroKeyPressed
+
+    private void txtRetiroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRetiroKeyReleased
+        // TODO add your handling code here:
+             try {
+           cantidad = Integer.valueOf(txtRetiro.getText());
+        } catch (Exception e) {
+            txtRetiro.setText("");
+        }
+    }//GEN-LAST:event_txtRetiroKeyReleased
 
     /**
      * @param args the command line arguments
@@ -240,7 +256,9 @@ public class frmRetiro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JTable tbTransaccion;
