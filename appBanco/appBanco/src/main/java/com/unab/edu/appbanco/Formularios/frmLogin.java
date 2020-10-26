@@ -161,16 +161,16 @@ public class frmLogin extends javax.swing.JFrame {
         String pass = txtPass.getText();
         var resul = cls.login(usu, pass);
         if (!usu.isEmpty() && !pass.isEmpty()) {
-
+          if(resul==true){
+          
             if ((ValueMenber[cbtipo.getSelectedIndex()]) == null) {
                 JOptionPane.showMessageDialog(null, "Debe de seleccionar un tipo de usuario");
-
             } else {
                 int id = cls.IdUsu;
                 int tipo = cls.TipoUsu;
                 if (Integer.parseInt(ValueMenber[cbtipo.getSelectedIndex()]) == tipo) {
                     if (tipo == 1) {
-                        JOptionPane.showMessageDialog(null, "Bienbenido " + txtUsuario.getText());
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + txtUsuario.getText());
                         Abono abono = new Abono();
                         String usuario = txtUsuario.getText();
                         abono.lblUsuario.setText(usuario.toUpperCase());
@@ -179,19 +179,21 @@ public class frmLogin extends javax.swing.JFrame {
                     } else {
                         prueba2 retiro = new prueba2();
                         retiro.id = id;
-                        JOptionPane.showMessageDialog(null, "Bienbenido " + txtUsuario.getText());
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + txtUsuario.getText());
                         retiro.MostrarTransacciones();
                         retiro.show();
                          dispose();
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error debe de selecionar un tipo de usuario diferente");
                 }
-      
             }
+          }else{ JOptionPane.showMessageDialog(null, "Usuario o password incorrecta");}
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
+            
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

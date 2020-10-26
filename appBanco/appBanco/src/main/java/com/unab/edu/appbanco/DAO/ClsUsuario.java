@@ -98,6 +98,7 @@ public class ClsUsuario {
         } catch (Exception e) {
             System.out.println("Error" + e);
         }
+      
         return resultado;
         
     }
