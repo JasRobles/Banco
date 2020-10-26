@@ -8,6 +8,7 @@ package com.unab.edu.appbanco.Formularios;
 import com.unab.edu.appbanco.DAO.ClsCuentasUsuario;
 import com.unab.edu.appbanco.Entidades.CuentasUsuario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,7 +36,7 @@ public int id;
         ArrayList<CuentasUsuario> lista = cuenta.lista(CU);
         String filas[] = new String[3];
         for (var i : lista ){
-        
+            
             filas[0] = String.valueOf(i.getSaldo());
             filas[1] = String.valueOf(i.getTransaccion());
             filas[2] = String.valueOf(i.getFecha());
@@ -86,6 +87,11 @@ public int id;
         jScrollPane1.setViewportView(tbTransaccion);
 
         btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/retirar.png"))); // NOI18N
 
@@ -162,6 +168,17 @@ public int id;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+       try {
+            CuentasUsuario CuentasUsu = new CuentasUsuario();
+            ClsCuentasUsuario ClsCU = new ClsCuentasUsuario();
+            CuentasUsu.setSaldo(Double.valueOf(txtRetiro.getText()));
+            ClsCU.InsertarAbono(CuentasUsu);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+        }
+    }//GEN-LAST:event_btnRetirarActionPerformed
 
     /**
      * @param args the command line arguments
