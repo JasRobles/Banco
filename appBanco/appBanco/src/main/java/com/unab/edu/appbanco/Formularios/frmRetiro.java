@@ -183,7 +183,7 @@ public class frmRetiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        if (Integer.valueOf(txtRetiro.getText())<=Integer.valueOf(lblSaldo.getText())) {
+        if (Integer.valueOf(txtRetiro.getText())<=Double.valueOf(lblSaldo.getText())) {
             try {
                 CuentasUsuario CuentasUsu = new CuentasUsuario();
                 ClsCuentasUsuario ClsCU = new ClsCuentasUsuario();
