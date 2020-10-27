@@ -33,9 +33,10 @@ public class frmRetiro extends javax.swing.JFrame {
     public void actualizar() {
         MostrarTransacciones();
     }
+  
 SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
     void MostrarTransacciones() {
-
+  double Saldo = 0;
         String TITULOS[] = {"SALDO", "TRANSACCION", "FECHA"};
         DefaultTableModel ModeloTabla = new DefaultTableModel(null, TITULOS);
         ClsCuentasUsuario cuenta = new ClsCuentasUsuario();
@@ -43,7 +44,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         CU.setIdUsuario(id);
         ArrayList<CuentasUsuario> lista = cuenta.lista(CU);
         String filas[] = new String[3];
-        double Saldo = 0;
+        
         for (var i : lista) {
             filas[0] = String.valueOf(i.getSaldo());
             if (i.getTransaccion() == 1) {
@@ -156,6 +157,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 234, -1, 24));
 
         lblSaldo.setFont(new java.awt.Font("Noto Serif Cond", 0, 14)); // NOI18N
+        lblSaldo.setText("0");
         jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 103, 29));
 
         jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
@@ -182,7 +184,7 @@ SimpleDateFormat formato = new SimpleDateFormat("y MMM d");
         
         reciduo = cantidad%5;
         if(reciduo==0){
-        if ((cantidad)<=Double.valueOf(lblSaldo.getText())) {
+        if ((cantidad)<=Double.valueOf(lblSaldo.getText())&& cantidad>0) {
             try {
                 CuentasUsuario CuentasUsu = new CuentasUsuario();
                 ClsCuentasUsuario ClsCU = new ClsCuentasUsuario();
